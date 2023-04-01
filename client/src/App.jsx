@@ -1,10 +1,16 @@
+import Canvas from './canvas';
+import Customizer from './Pages/Customizer';
+import Home from './Pages/Home';
+
 
 function App() {
 
   return (
-    <div>
-      <h1 className="head-text">ThreeJS</h1>
-    </div>
+    <main className='app transition-all ease-in'>
+      <Home />
+      <Canvas />
+      <Customizer />
+    </main>
   )
 }
 
