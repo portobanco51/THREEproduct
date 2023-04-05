@@ -71,6 +71,11 @@ html {
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+.tabs {
+    position: absolute;
+    top: -59svh;
+}
+
 input[type="file"] {
     z-index: -1;
     position: absolute;
