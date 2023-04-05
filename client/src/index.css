@@ -17,6 +17,7 @@ html {
 }
 
 .app {
+    max-height: 100svh;
     @apply relative w-full h-screen overflow-hidden;
 }
 

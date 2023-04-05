@@ -19,13 +19,13 @@ const Home = () => {
 
                         <motion.div {...headTextAnimation}>
                             <h1 className="head-text">
-                                LET'S <br className='xl:block hidden' /> DO IT.
+                                LET<span style={{ color: snap.color }} >'</span>S <br className='xl:block hidden' /> DO IT<span style={{ color: snap.color }} >!</span>
                             </h1>
                         </motion.div>
 
                         <motion.div className='flex flex-col gap-5' {...headContentAnimation} >
                             <p className='max-w-md font-normal text-grey-600 text-base' >
-                                Create your unique and exclusive shirt with our brand-new 3D customization too. <strong>Unleash your imagination</strong>{''} and define your own style.
+                                Create your unique and exclusive shirt with our brand-new 3D customization tool. <strong><span style={{ color: snap.color }} >Unleash your imagination</span></strong>{''} and define your own style.
                             </p>
 
                             <CustomButton
