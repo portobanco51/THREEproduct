@@ -20,6 +20,13 @@ const Customizer = () => {
         stylishShirt: false,
     })
 
+    const handleReturns = () => {
+        activeEditorTab !== ''
+            ? setActiveEditorTab('')
+            : state.intro = true;
+        // state.intro = true;
+    }
+
     const generateTabContent = () => {
         switch (activeEditorTab) {
             case "colorpicker":
@@ -30,7 +37,7 @@ const Customizer = () => {
                 return <AIPicker />
 
             default:
-                return null;
+                return '';
         }
 
     }
@@ -41,6 +48,16 @@ const Customizer = () => {
         <AnimatePresence>
             {!snap.intro && (
                 <>
+                    <motion.div className='absolute z-10 top-5 right-5' {...fadeAnimation} >
+
+                        <CustomButton
+                            type='filled'
+                            title={`${activeEditorTab != '' ? 'Back' : 'Home'}`}
+                            handleClick={() => handleReturns()}
+                            customStyles='w-fit px-4 py-2.5 font-bold text-sm'
+                        />
+
+                    </motion.div>
                     <motion.div className="absolute top-@ left-@ z-10" {...slideAnimation('left')} >
                         <div className="flex items-center min-h-screen">
                             <div className="editortabs-container tabs">
@@ -48,7 +65,11 @@ const Customizer = () => {
                                     <Tab
                                         key={tab.name}
                                         tab={tab}
-                                        handleClick={() => setActiveEditorTab(tab.name)}
+                                        handleClick={() => {
+                                            activeEditorTab !== ''
+                                                ? setActiveEditorTab('')
+                                                : setActiveEditorTab(tab.name)
+                                        }}
                                     />
                                 ))}
                                 {generateTabContent()}
@@ -56,16 +77,6 @@ const Customizer = () => {
                         </div>
                     </motion.div>
 
-                    <motion.div className='absolute z-10 top-5 right-5' {...fadeAnimation} >
-
-                        <CustomButton
-                            type='filled'
-                            title='Go Back'
-                            handleClick={() => state.intro = true}
-                            customStyles='w-fit px-4 py-2.5 font-bold text-sm'
-                        />
-
-                    </motion.div>
 
                     <motion.div className='filtertabs-container' {...slideAnimation('up')} >
                         {FilterTabs.map((tab) => (
