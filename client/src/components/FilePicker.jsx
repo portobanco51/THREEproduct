@@ -1,6 +1,53 @@
+import { useState } from "react";
 import CustomButton from "./CustomButton";
+import { DecalTypes } from "../config/constants";
+import state from "../store";
 
-const FilePicker = ({ file, setFile, readFile }) => {
+const FilePicker = ({
+    setActiveEditorTab,
+    activeFilterTab,
+    setActiveFilterTab,
+}) => {
+    const [file, setFile] = useState(undefined);
+
+    const readFile = (type) => {
+        reader(file).then((result) => {
+            handleDecals(type, result);
+            setActiveEditorTab("");
+        });
+    };
+
+    const handleDecals = (type, result) => {
+        const decalType = DecalTypes[type];
+        state[decalType.stateProperty] = result;
+
+        !!activeFilterTab[decalType.filterTab]
+            ? handleActiveFilterTab(decalType.filterTab)
+            : null;
+    };
+
+    const handleActiveFilterTab = (tabName) => {
+        switch (tabName) {
+            case "logoShirt":
+                state.isLogoTexture = !activeFilterTab[tabName];
+                break;
+            case "stylishShirt":
+                state.isFullTexture = !activeFilterTab[tabName];
+                break;
+            default:
+                state.isLogoTexture = true;
+                state.isFullTexture = false;
+                break;
+        }
+
+        setActiveFilterTab((prevState) => {
+            return {
+                ...prevState,
+                [tabName]: !prevState[tabName],
+            };
+        });
+    };
+
     return (
         <div className="filepicker-container">
             <div className="flex flex-1 flex-col">
