@@ -35,13 +35,9 @@ const Customizer = () => {
         const decalType = DecalTypes[type];
         state[decalType.stateProperty] = result;
 
-        if (!activeFilterTab[decalType.filterTab]) {
-            handleActiveFilterTab(decalType.filterTab);
-        }
-
-        // !!activeFilterTab[decalType.filterTab]
-        //     ? handleActiveFilterTab(decalType.filterTab)
-        //     : null
+        !!activeFilterTab[decalType.filterTab]
+            ? handleActiveFilterTab(decalType.filterTab)
+            : null;
     };
     const handleActiveFilterTab = (tabName) => {
         switch (tabName) {
@@ -66,13 +62,20 @@ const Customizer = () => {
     };
 
     const readFile = (type) => {
-        if (file !== "" || file !== undefined) {
-            reader(file).then((result) => {
-                handleDecals(type, result);
-                setActiveEditorTab("");
-            });
-        } else {
-            return;
+        reader(file).then((result) => {
+            handleDecals(type, result);
+            setActiveEditorTab("");
+        });
+    };
+
+    const handleSubmit = async (type) => {
+        if (!prompt) return alert("Please enter a prompt");
+        try {
+        } catch (error) {
+            alert(error);
+        } finally {
+            setGeneratingImg(false);
+            setActiveEditorTab("");
         }
     };
 
@@ -89,10 +92,16 @@ const Customizer = () => {
                     />
                 );
             case "aipicker":
-                return <AIPicker />;
-
+                return (
+                    <AIPicker
+                        prompt={prompt}
+                        setPrompt={setPrompt}
+                        generatingImg={generatingImg}
+                        handleSubmit={handleSubmit}
+                    />
+                );
             default:
-                return "";
+                return null;
         }
     };
 
