@@ -1,7 +1,7 @@
 import { slideAnimation } from "../config/motion";
 import { EditorTabs } from "../config/constants";
 import { motion } from "framer-motion";
-import { ColorPicker, AIPicker, FilePicker, Tab } from ".";
+import { ColorPicker, AIPicker, FilePicker, Tab } from "../components";
 
 const EditorTab = ({
     activeEditorTab,
@@ -20,11 +20,17 @@ const EditorTab = ({
                         setActiveFilterTab={setActiveFilterTab}
                         activeFilterTab={activeFilterTab}
                         setActiveEditorTab={setActiveEditorTab}
-                        handleActiveFilterTab={handleActiveFilterTab}
                     />
                 );
             case "aipicker":
-                return <AIPicker />;
+                return (
+                    <AIPicker
+                        activeFilterTab={activeFilterTab}
+                        setActiveEditorTab={setActiveEditorTab}
+                        handleActiveFilterTab={handleActiveFilterTab}
+                        setActiveFilterTab={setActiveFilterTab}
+                    />
+                );
             default:
                 return null;
         }

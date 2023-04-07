@@ -6,7 +6,6 @@ import state from "../store";
 import { download } from "../assets";
 import { downloadCanvasToImage, reader } from "../config/helpers";
 import { EditorTab, FilterTab, GlobalBtn } from "../components";
-import { CustomButton } from "../components";
 
 const Customizer = () => {
     const snap = useSnapshot(state);
@@ -15,10 +14,6 @@ const Customizer = () => {
         logoShirt: true,
         stylishShirt: false,
     });
-
-    // const handleReturns = () => {
-    //     activeEditorTab !== "" ? setActiveEditorTab("") : (state.intro = true);
-    // };
 
     const handleActiveFilterTab = (tabName) => {
         switch (tabName) {
@@ -46,17 +41,6 @@ const Customizer = () => {
         <AnimatePresence>
             {!snap.intro && (
                 <>
-                    {/* <motion.div
-                        className="absolute z-10 top-5 right-5"
-                        {...fadeAnimation}>
-                        <CustomButton
-                            type="filled"
-                            title={`${activeEditorTab != "" ? "Back" : "Home"}`}
-                            handleClick={() => handleReturns()}
-                            customStyles="w-fit px-4 py-2.5 font-bold text-sm"
-                        />
-                    </motion.div> */}
-
                     <GlobalBtn
                         activeEditorTab={activeEditorTab}
                         setActiveEditorTab={setActiveEditorTab}

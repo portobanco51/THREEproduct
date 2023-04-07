@@ -1,6 +1,7 @@
 import { useState } from "react";
-import CustomButton from "./CustomButton";
 import { DecalTypes } from "../config/constants";
+import { reader } from "../config/helpers";
+import CustomButton from "./CustomButton";
 import state from "../store";
 
 const FilePicker = ({
@@ -8,24 +9,14 @@ const FilePicker = ({
     activeFilterTab,
     setActiveFilterTab,
 }) => {
-    const [file, setFile] = useState(undefined);
-
-    const readFile = (type) => {
-        reader(file).then((result) => {
-            handleDecals(type, result);
-            setActiveEditorTab("");
-        });
-    };
-
     const handleDecals = (type, result) => {
         const decalType = DecalTypes[type];
         state[decalType.stateProperty] = result;
 
-        !!activeFilterTab[decalType.filterTab]
+        !activeFilterTab[decalType.filterTab]
             ? handleActiveFilterTab(decalType.filterTab)
             : null;
     };
-
     const handleActiveFilterTab = (tabName) => {
         switch (tabName) {
             case "logoShirt":
@@ -45,6 +36,14 @@ const FilePicker = ({
                 ...prevState,
                 [tabName]: !prevState[tabName],
             };
+        });
+    };
+    const [file, setFile] = useState(undefined);
+
+    const readFile = (type) => {
+        reader(file).then((result) => {
+            handleDecals(type, result);
+            setActiveEditorTab("");
         });
     };
 
@@ -86,3 +85,4 @@ const FilePicker = ({
     );
 };
 export default FilePicker;
+// export { handleDecals };
