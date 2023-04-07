@@ -85,4 +85,3 @@ const FilePicker = ({
     );
 };
 export default FilePicker;
-// export { handleDecals };

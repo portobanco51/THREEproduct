@@ -1,31 +1,30 @@
-import { easing } from 'maath'
-import { useFrame } from '@react-three/fiber';
-import { useGLTF, useTexture, Decal } from '@react-three/drei'
-import { useSnapshot } from 'valtio'
-import state from '../store'
+import { easing } from "maath";
+import { useFrame } from "@react-three/fiber";
+import { useGLTF, useTexture, Decal } from "@react-three/drei";
+import { useSnapshot } from "valtio";
+import state from "../store";
 
 const Shirt = () => {
-    const snap = useSnapshot(state)
-    const { nodes, materials } = useGLTF('/shirt_baked.glb')
+    const snap = useSnapshot(state);
+    const { nodes, materials } = useGLTF("/shirt_baked.glb");
 
-    const stateString = JSON.stringify(snap)
+    const stateString = JSON.stringify(snap);
 
-    const logoTexture = useTexture(snap.logoDecal)
-    const fullTexture = useTexture(snap.fullDecal)
+    const logoTexture = useTexture(snap.logoDecal);
+    const fullTexture = useTexture(snap.fullDecal);
 
     useFrame((state, delta) => {
-        easing.dampC(materials.lambert1.color, snap.color, 0.25, delta)
-    })
-
+        easing.dampC(materials.lambert1.color, snap.color, 0.25, delta);
+    });
 
     return (
-        <group key={stateString} >
-            <mesh castShadow
+        <group key={stateString}>
+            <mesh
+                castShadow
                 geometry={nodes.T_Shirt_male.geometry}
                 material={materials.lambert1}
                 material-roughness={1}
-                dispose={null}
-            >
+                dispose={null}>
                 {snap.isFullTexture && (
                     <Decal
                         position={[0, 0, 0]}
@@ -48,6 +47,6 @@ const Shirt = () => {
                 )}
             </mesh>
         </group>
-    )
-}
-export default Shirt
+    );
+};
+export default Shirt;
