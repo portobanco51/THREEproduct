@@ -34,7 +34,7 @@ html {
 }
 
 .download-btn {
-    @apply w-14 h-14 mx-6 flex items-center justify-center rounded-full glassmorphism cursor-pointer outline-none absolute bottom-5 right-5;
+    @apply w-14 h-14 mx-6 flex items-center justify-center rounded-full glassmorphism cursor-pointer outline-none absolute bottom-5 right-5 z-10;
 }
 
 .editortabs-container {
