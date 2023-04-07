@@ -34,7 +34,7 @@ html {
 }
 
 .download-btn {
-    @apply w-14 h-14 flex justify-center items-center rounded-full glassmorphism cursor-pointer outline-none;
+    @apply w-14 h-14 mx-6 flex items-center justify-center rounded-full glassmorphism cursor-pointer outline-none absolute bottom-5 right-5;
 }
 
 .editortabs-container {
@@ -51,6 +51,7 @@ html {
 
 .aipicker-textarea {
     @apply w-full bg-transparent text-sm border border-gray-300 p-2 outline-none flex-1;
+    resize: none;
 }
 
 .filepicker-container {
