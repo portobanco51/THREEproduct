@@ -45,13 +45,16 @@ const AIPicker = ({
         if (!prompt) return alert("Please enter a prompt");
         try {
             setGeneratingImg(true);
-            const res = await fetch("http://localhost:8080/api/v1/dalle", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
+            const res = await fetch(
+                "https://threed-shirt-custom-site.onrender.com/api/v1/dalle",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ prompt }),
                 },
-                body: JSON.stringify({ prompt }),
-            });
+            );
 
             const data = await res?.json();
             data !== undefined

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "winBuild": "set \"GENERATE_SOURCEMAP=false\" && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
